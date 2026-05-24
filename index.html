@@ -118,6 +118,38 @@
                     metus. Phasellus vestibulum lorem vel justo feugiat, in semper augue euismod. Donec imperdiet justo
                     a justo ultrices, ac mollis justo fermentum.
                 </p>
+
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="you@example.com"
+                            autocomplete="email"
+                        />
+                        <span class="form-hint">Never shared or used for anything.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject">
+                            <option value="" disabled selected>Select a subject</option>
+                            <option value="general">General</option>
+                            <option value="affiliate">Affiliate request</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Your message..."></textarea>
+                    </div>
+                    <button>Send message</button>
+                </form>
             </main>
 
             <section class="info-strip" aria-label="Site information">
@@ -132,11 +164,21 @@
                 <div class="info-cell warm">
                     <h2 class="info-label">Affiliates</h2>
                     <div class="affiliates-wrapper">
-                        <a class="affiliate-pill" href="#"><span>Site One</span></a>
-                        <a class="affiliate-pill" href="#"><span>Site Two</span></a>
-                        <a class="affiliate-pill" href="#"><span>Site Three</span></a>
-                        <a class="affiliate-pill" href="#"><span>Site Four</span></a>
-                        <a class="affiliate-pill" href="#"><span>Apply</span></a>
+                        <a class="affiliate-pill" href="#" target="_blank" rel="noopener noreferrer"
+                            ><span>Site One</span></a
+                        >
+                        <a class="affiliate-pill" href="#" target="_blank" rel="noopener noreferrer"
+                            ><span>Site Two</span></a
+                        >
+                        <a class="affiliate-pill" href="#" target="_blank" rel="noopener noreferrer"
+                            ><span>Site Three</span></a
+                        >
+                        <a class="affiliate-pill" href="#" target="_blank" rel="noopener noreferrer"
+                            ><span>Site Four</span></a
+                        >
+                        <a class="affiliate-pill" href="#" target="_blank" rel="noopener noreferrer"
+                            ><span>Apply</span></a
+                        >
                     </div>
                 </div>
             </section>
@@ -153,11 +195,31 @@
                 <div>
                     <h2 class="footer-head">Credits</h2>
                     <ul class="credit-links">
-                        <li><a href="https://heart-statiion.net/">Premade by Heart Station</a></li>
-                        <li><a href="https://www.deviantart.com/abbysidian">Abbysidian @ deviantArt</a></li>
-                        <li><a href="https://www.deviantart.com/so-ghislaine">So-ghislaine @ deviantArt</a></li>
-                        <li><a href="https://www.deviantart.com/ravenorlov">RavenOrlov @ deviantArt</a></li>
-                        <li><a href="https://fonts.google.com/">Google Fonts</a></li>
+                        <li>
+                            <a href="https://heart-statiion.net/" target="_blank" rel="noopener noreferrer"
+                                >Premade by Heart Station</a
+                            >
+                        </li>
+                        <li>
+                            <a href="https://www.deviantart.com/abbysidian" target="_blank" rel="noopener noreferrer"
+                                >Abbysidian @ deviantArt</a
+                            >
+                        </li>
+                        <li>
+                            <a href="https://www.deviantart.com/so-ghislaine" target="_blank" rel="noopener noreferrer"
+                                >So-ghislaine @ deviantArt</a
+                            >
+                        </li>
+                        <li>
+                            <a href="https://www.deviantart.com/ravenorlov" target="_blank" rel="noopener noreferrer"
+                                >RavenOrlov @ deviantArt</a
+                            >
+                        </li>
+                        <li>
+                            <a href="https://fonts.google.com/" target="_blank" rel="noopener noreferrer"
+                                >Google Fonts</a
+                            >
+                        </li>
                     </ul>
                 </div>
             </footer>
