@@ -1,0 +1,119 @@
+@use "sass:math";
+@use "sass:string";
+@use "sass:map";
+@use "sass:list";
+@use "../abstracts/variables" as vars;
+@use "functions" as fn;
+
+// Usage:
+// @include flex-layout($display: flex, $dir: row, $align: center, $justify: space-between, $wrap: wrap, $gap: map.get(vars.$padding, "md"), $flex: 1);
+// Creates a flexbox layout with direction, alignment, justification, wrapping, and gap.
+// All parameters are optional and default to null (will not output CSS if null).
+// Use map.get(vars.$padding, "key") for consistent spacing from the $padding scale.
+@mixin flex-layout($display: flex, $dir: null, $align: null, $justify: null, $wrap: null, $gap: null, $flex: null) {
+    display: $display;
+    flex-direction: $dir;
+    align-items: $align;
+    justify-content: $justify;
+    gap: $gap;
+    flex-wrap: $wrap;
+    flex: $flex;
+}
+
+// Usage:
+// @include grid-layout($display: grid, $columns: 200px 1fr, $rows: auto, $gap: 16px);
+// Creates a grid layout with specified columns, rows, and gap. Parameters are optional.
+@mixin grid-layout($display: null, $columns: null, $rows: null, $gap: null) {
+    display: $display;
+    grid-template-columns: $columns;
+    grid-template-rows: $rows;
+    gap: $gap;
+}
+
+// Usage:
+// @include absolute-cover();
+// Makes an element fill the entire area of its nearest positioned ancestor.
+// Used for overlays, backdrops, or pseudo-element covers.
+@mixin absolute-cover {
+    position: absolute;
+    inset: 0;
+}
+
+// Usage:
+// @include absolute($position: absolute, $top: map.get(vars.$padding, "md"), $right: map.get(vars.$padding, "md"));
+// @include absolute($position: sticky, $top: 0);
+// Positions an element with absolute/fixed/sticky positioning and optional edge offsets.
+// All parameters are optional and default to null (will not output CSS if null).
+@mixin absolute($position: null, $top: null, $right: null, $bottom: null, $left: null) {
+    position: $position;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+
+// Usage:
+// @include list-style($type: none);
+// @include list-style($type: square);
+// Removes or customizes list markers. Use $type: none to remove default markers.
+@mixin list-style($type: null) {
+    list-style-type: $type;
+}
+
+// Usage:
+// @include breakpoint("md") { /* CSS rules for >= 48rem */ }
+// @include breakpoint("lg", max) { /* CSS rules for <= 64rem */ }
+// Creates responsive media queries based on defined breakpoints.
+// Available breakpoints: xs, sm, md, lg, xl, xxl
+// Direction: min (default) for min-width, max for max-width
+@mixin breakpoint($name, $direction: min) {
+    $value: fn.breakpoint-value($name);
+
+    @if $direction == min {
+        @media (min-width: #{$value}) {
+            @content;
+        }
+    } @else if $direction == max {
+        @media (max-width: #{$value}) {
+            @content;
+        }
+    } @else {
+        @error "Invalid breakpoint direction `#{$direction}`. Use `min` or `max`.";
+    }
+}
+
+// Usage:
+// @include fluid-type(1rem, 2rem); // auto calc preferred size between 20rem and 75rem viewport
+// @include fluid-type(1rem, 2vw, 2rem); // manual preferred value
+// @include type-scale("xl"); // look up a named step from $type-scale
+@mixin fluid-type($min, $preferred, $max: null, $min-vw: 20rem, $max-vw: 75rem) {
+    @if $max == null {
+        $max: $preferred;
+        $preferred: null;
+    }
+
+    @if $preferred == null {
+        $range: $max - $min;
+        $slope: math.div($range, $max-vw - $min-vw) * 100;
+        $intercept: $min - $slope * math.div($min-vw, 100);
+
+        font-size: clamp($min, calc(#{$intercept} + #{$slope}vw), $max);
+    } @else {
+        font-size: clamp($min, $preferred, $max);
+    }
+}
+
+// Usage:
+// @include type-scale("base");  // body copy  → clamp(0.9375rem, ..., 1rem)
+// @include type-scale("2xl");   // page h1    → clamp(2.25rem, ..., 3.5rem)
+// @include type-scale("display"); // hero h1  → clamp(3rem, ..., 5.5rem)
+// Looks up a named step from $type-scale in abstracts/_typography.scss and applies
+// a fluid font-size that scales linearly between the 20rem and 75rem viewport widths.
+// Available steps: xs, sm, base, lg, xl, 2xl, display
+@mixin type-scale($step) {
+    $sizes: map.get(vars.$type-scale, $step);
+    @if $sizes == null {
+        @error "Unknown type scale step `#{$step}`. Available: #{map.keys(vars.$type-scale)}.";
+    }
+    @include fluid-type(list.nth($sizes, 1), list.nth($sizes, 2));
+}

@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "sass": "sass assets/scss:assets/css --watch",
+    "postcss": "postcss assets/css/main.css -o assets/css/main.min.css",
+    "build": "sass assets/scss:assets/css --no-source-map && postcss assets/css/main.css -o assets/css/main.min.css",
+    "format": "prettier --write \"**/*.{html,scss,css,js}\""
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.5.0",
+    "cssnano": "^8.0.1",
+    "postcss": "^8.5.15",
+    "postcss-cli": "^11.0.1",
+    "prettier": "3.8.3"
+  }
+}

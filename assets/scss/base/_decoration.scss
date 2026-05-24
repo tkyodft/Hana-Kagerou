@@ -1,0 +1,56 @@
+@use "../abstracts/variables" as vars;
+@use "../utilities/mixins" as mx;
+@use "sass:map";
+
+// -----------------------------------------------------------------------------
+// Decorative / typographic defaults
+// -----------------------------------------------------------------------------
+
+b,
+strong {
+    color: vars.$rose-strong;
+    text-decoration: none;
+}
+
+i,
+em {
+    color: vars.$peach;
+}
+
+u {
+    color: vars.$peach;
+    text-decoration: none;
+    border-bottom: 1px dashed vars.$peach;
+}
+
+// -----------------------------------------------------------------------------
+// Heading styles
+// -----------------------------------------------------------------------------
+%heading {
+    font-family: vars.$heading-font;
+    line-height: map.get(vars.$line-height, "heading");
+    color: vars.$rose;
+}
+
+h1 {
+    @extend %heading;
+}
+
+h2 {
+    @extend %heading;
+}
+
+h3 {
+    @extend %heading;
+    letter-spacing: map.get(vars.$tracking, "tight");
+}
+
+.heading {
+    @extend %heading;
+    color: vars.$warm-white;
+    background: vars.$rose;
+    display: block;
+    width: max-content;
+    font-family: vars.$sub-heading-font;
+    padding: map.get(vars.$padding, "md");
+}

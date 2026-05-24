@@ -1,0 +1,31 @@
+@use "../abstracts/variables" as vars;
+@use "_mixins" as mx;
+@use "sass:map";
+
+// -----------------------------------------------------------------------------
+// Utility styles
+// -----------------------------------------------------------------------------
+
+.petal-divider {
+    @include mx.flex-layout($align: center, $justify: center, $gap: map.get(vars.$padding, "sm"));
+    padding: map.get(vars.$padding, "sm") 0 map.get(vars.$padding, "xs");
+    background: vars.$warm-white;
+
+    .line {
+        @include mx.flex-layout($flex: 1);
+        height: 1px;
+        background: vars.$rose-pale;
+        max-width: 240px;
+    }
+
+    .petal {
+        @include mx.flex-layout($align: center, $justify: center, $gap: map.get(vars.$padding, "sm"));
+        color: vars.$rose-pale;
+        letter-spacing: map.get(vars.$tracking, "wide");
+
+        &::before {
+            content: "\273F";
+            margin-inline: map.get(vars.$padding, "md");
+        }
+    }
+}

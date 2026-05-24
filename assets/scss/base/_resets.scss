@@ -1,0 +1,117 @@
+@use "sass:map";
+@use "../abstracts/variables" as vars;
+
+// -----------------------------------------------------------------------------
+// Force the browser to include an element's padding and borders
+// inside its specified width and height
+// -----------------------------------------------------------------------------
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+// -----------------------------------------------------------------------------
+// Remove browser default margin and padding
+// -----------------------------------------------------------------------------
+*:not(dialog) {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    interpolate-size: allow-keywords;
+}
+
+html {
+    scrollbar-gutter: stable;
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+}
+
+// -----------------------------------------------------------------------------
+// Create sticky footer
+// Increase default line height
+// Improve text rendering for macOS
+// -----------------------------------------------------------------------------
+body {
+    min-block-size: 100svh;
+    line-height: map.get(vars.$leading, "normal");
+    -webkit-font-smoothing: antialiased;
+}
+
+// -----------------------------------------------------------------------------
+// Improve media defaults
+// -----------------------------------------------------------------------------
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+// -----------------------------------------------------------------------------
+// Inherit font for form controls
+// -----------------------------------------------------------------------------
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+// -----------------------------------------------------------------------------
+// Avoid text overflows
+// -----------------------------------------------------------------------------
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+// -----------------------------------------------------------------------------
+// Improve line wrapping
+// -----------------------------------------------------------------------------
+p {
+    text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-wrap: balance;
+}
+
+// -----------------------------------------------------------------------------
+// Enable keyword animations
+// -----------------------------------------------------------------------------
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        interpolate-size: allow-keywords;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Reduce motion for users who prefer it
+// -----------------------------------------------------------------------------
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

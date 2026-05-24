@@ -1,0 +1,37 @@
+@use "sass:math";
+
+// Spacing, letter-spacing, and line-height
+$spacer: 1rem;
+// Define padding map consistently as multiples of `$spacer`.
+$padding: (
+    // 0.25rem
+    "xs": math.div($spacer, 4),
+    // 0.5rem
+    "sm": math.div($spacer, 2),
+    // 1rem
+    "md": $spacer,
+
+    // 1.5rem
+    "lg": math.div($spacer * 3, 2),
+    // 2rem
+    "xl": $spacer * 2,
+    // 3rem
+    "xxl": $spacer * 3
+);
+
+$letter-spacing: (
+    "tightest": 0.06em,
+    "tight": 0.18em,
+    "normal": 0.2em,
+    "wide": 0.3125em,
+);
+
+$line-height: (
+    "tight": 1,
+    "heading": 1.1,
+    "normal": 1.5,
+    "loose": 1.8,
+);
+
+$tracking: $letter-spacing;
+$leading: $line-height;

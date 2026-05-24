@@ -1,0 +1,61 @@
+@use "../utilities/mixins" as mx;
+@use "../abstracts/variables" as vars;
+@use "sass:map";
+
+// -----------------------------------------------------------------------------
+// Hero block
+// -----------------------------------------------------------------------------
+
+.hero {
+    background: url("../images/banner.webp") no-repeat;
+    background-size: cover;
+    height: 200px;
+    background-position: 75% 50%;
+    filter: sepia(0.08) contrast(0.97);
+    @include mx.absolute($position: relative);
+
+    @include mx.breakpoint("md") {
+        height: 350px;
+    }
+
+    @include mx.breakpoint("lg") {
+        height: 500px;
+    }
+
+    &-veil {
+        @include mx.absolute-cover();
+        background: linear-gradient(to bottom, transparent 50%, rgba(vars.$cream, 0.92) 100%);
+    }
+
+    &-title {
+        @include mx.absolute($position: absolute, $bottom: map.get(vars.$padding, "md"), $left: 0, $right: 0);
+        text-align: center;
+
+        h1 {
+            font-family: vars.$heading-font;
+            color: vars.$ink;
+            text-shadow: 0 1px 10px rgba(vars.$cream, 0.95);
+            line-height: map.get(vars.$line-height, "tight");
+            @include mx.type-scale("display");
+
+            @include mx.breakpoint("lg") {
+                letter-spacing: map.get(vars.$tracking, "normal");
+            }
+        }
+
+        .sub {
+            font-family: vars.$sub-heading-font;
+            text-transform: uppercase;
+            color: vars.$ink-mid;
+
+            span {
+                @include mx.flex-layout($display: inline-flex, $align: center);
+
+                &:not(:last-child)::after {
+                    content: "\00B7";
+                    margin-inline: map.get(vars.$padding, "xs");
+                }
+            }
+        }
+    }
+}

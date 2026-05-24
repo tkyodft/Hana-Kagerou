@@ -1,0 +1,50 @@
+@use "../utilities/mixins" as mx;
+@use "../abstracts/variables" as vars;
+@use "sass:map";
+
+// -----------------------------------------------------------------------------
+// Footer block
+// -----------------------------------------------------------------------------
+
+footer {
+    @include mx.flex-layout($display: flex, $dir: column, $gap: map.get(vars.$padding, "md"));
+    background: vars.$warm-white;
+    padding: map.get(vars.$padding, "xl") map.get(vars.$padding, "lg") map.get(vars.$padding, "md");
+
+    @include mx.breakpoint("lg") {
+        @include mx.grid-layout($display: grid, $columns: 1fr 1fr, $gap: map.get(vars.$padding, "xl"));
+        padding: map.get(vars.$padding, "xl") map.get(vars.$padding, "xxl") map.get(vars.$padding, "lg");
+    }
+
+    .footer-text {
+        @include mx.type-scale("sm");
+    }
+
+    .credit-links {
+        @include mx.list-style($type: none);
+
+        li + li {
+            margin-block-start: map.get(vars.$padding, "xs");
+        }
+
+        li a {
+            @include mx.type-scale("sm");
+            padding-block: map.get(vars.$padding, "xs") 0;
+            text-decoration: none;
+            transition: padding-inline 0.13s;
+
+            &:hover {
+                padding-inline: map.get(vars.$padding, "sm") 0;
+            }
+        }
+    }
+}
+
+.footer-base {
+    background: vars.$peach-pale;
+    border-top: 1px solid vars.$rose-pale;
+    padding: map.get(vars.$padding, "sm") map.get(vars.$padding, "lg");
+    @include mx.type-scale("xs");
+    letter-spacing: map.get(vars.$tracking, "tightest");
+    text-align: center;
+}

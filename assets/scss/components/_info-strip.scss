@@ -1,0 +1,67 @@
+@use "../utilities/mixins" as mx;
+@use "../abstracts/variables" as vars;
+@use "sass:map";
+
+.info-strip {
+    border-top: 1px solid vars.$rule;
+    border-bottom: 1px solid vars.$rule;
+
+    @include mx.breakpoint("lg") {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .info-cell {
+        background: vars.$warm-white;
+        padding: map.get(vars.$padding, "md");
+
+        @include mx.breakpoint("lg") {
+            padding: map.get(vars.$padding, "lg") map.get(vars.$padding, "xl");
+        }
+
+        &:first-child {
+            border-bottom: 1px solid vars.$rule;
+
+            @include mx.breakpoint("lg") {
+                border-bottom: none;
+                border-right: 1px solid vars.$rule;
+            }
+        }
+
+        &.warm {
+            background: vars.$peach-pale;
+        }
+
+        .info-text {
+            @include mx.type-scale("sm");
+        }
+
+        .affiliates-wrapper {
+            @include mx.flex-layout($display: flex, $wrap: wrap, $gap: map.get(vars.$padding, "md"));
+
+            .affiliate-pill {
+                @include mx.type-scale("sm");
+                color: vars.$rose;
+                border: 1px solid vars.$rose-mid;
+                padding: map.get(vars.$padding, "xs") map.get(vars.$padding, "sm");
+                transition: background 0.14s;
+                text-transform: lowercase;
+
+                &:hover {
+                    color: vars.$rose-deep;
+                    background: vars.$rose-pale;
+                }
+
+                & span::before {
+                    content: "\2661";
+                    margin-inline: 0 map.get(vars.$padding, "xs");
+                }
+
+                &:last-child span::before {
+                    content: "+";
+                    margin-inline: 0 map.get(vars.$padding, "xs");
+                }
+            }
+        }
+    }
+}

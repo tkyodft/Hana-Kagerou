@@ -1,0 +1,140 @@
+@use "../abstracts/variables" as vars;
+@use "../utilities/mixins" as mx;
+@use "sass:map";
+
+// -----------------------------------------------------------------------------
+// Navbar
+// -----------------------------------------------------------------------------
+
+header.nav-wrapper {
+    @include mx.absolute($position: sticky, $top: 0);
+    z-index: map.get(vars.$z-index, "z-5");
+    max-width: vars.$container-max-width;
+    margin-inline: auto;
+
+    .topnav {
+        height: vars.$navbar-height;
+        background: vars.$warm-white;
+        border-bottom: 1px solid transparent;
+        @include mx.flex-layout($align: stretch, $justify: space-between);
+        box-shadow: 0 0 30px 1px vars.$shadow;
+
+        .brand {
+            @include mx.flex-layout($display: flex, $align: center, $justify: center);
+            font-family: vars.$heading-font;
+            @include mx.type-scale("xl");
+            color: vars.$warm-white;
+            background: vars.$rose;
+            text-decoration: none;
+            padding: map.get(vars.$padding, "sm") map.get(vars.$padding, "lg");
+            border-bottom: none;
+        }
+
+        .hamburger {
+            @include mx.flex-layout($dir: column, $justify: center, $gap: map.get(vars.$padding, "xs"));
+            padding: map.get(vars.$padding, "sm") map.get(vars.$padding, "lg");
+            cursor: pointer;
+
+            @include mx.breakpoint("lg") {
+                display: none;
+            }
+
+            span {
+                display: block;
+                height: 0.09375rem;
+                background: vars.$rose;
+
+                &:nth-child(1) {
+                    width: map.get(vars.$hamburger, "lg");
+                }
+
+                &:nth-child(2) {
+                    width: map.get(vars.$hamburger, "lg");
+                }
+
+                &:nth-child(3) {
+                    width: map.get(vars.$hamburger, "sm");
+                }
+            }
+        }
+
+        .nav-links {
+            display: none;
+            text-transform: lowercase;
+
+            @include mx.breakpoint("lg") {
+                @include mx.list-style($type: none);
+                @include mx.flex-layout($display: flex, $dir: row, $align: center);
+                @include mx.type-scale("sm");
+
+                li a {
+                    @include mx.flex-layout($display: flex, $align: center, $gap: map.get(vars.$padding, "sm"));
+                    padding: map.get(vars.$padding, "md");
+                    color: vars.$rose;
+                    border-bottom: 2px solid transparent;
+                    transition:
+                        background 0.15s,
+                        color 0.15s;
+
+                    &::before {
+                        content: "\2661";
+                        opacity: 0.6;
+                    }
+
+                    &:hover,
+                    &:active {
+                        color: vars.$warm-white;
+                        background: rgba(vars.$rose, 0.72);
+                    }
+
+                    &.active {
+                        border-bottom-color: vars.$rose;
+                    }
+                }
+            }
+        }
+    }
+
+    .drawer {
+        @include mx.absolute($position: absolute, $top: vars.$navbar-height, $right: 0, $left: 0);
+        background: vars.$rose;
+        z-index: map.get(vars.$z-index, "z-4");
+        @include mx.grid-layout($display: grid, $rows: 0fr);
+        transition: grid-template-rows 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        @include mx.type-scale("sm");
+
+        &.is-open {
+            @include mx.grid-layout($rows: 1fr);
+        }
+
+        > div {
+            overflow: hidden;
+        }
+
+        a {
+            @include mx.flex-layout($align: center, $gap: map.get(vars.$padding, "xs"));
+            padding: map.get(vars.$padding, "sm");
+            color: vars.$warm-white;
+            letter-spacing: map.get(vars.$tracking, "tightest");
+            text-decoration: none;
+            border-bottom: 1px solid rgba(vars.$white, 0.1);
+            transition: background 0.12s;
+            text-transform: lowercase;
+
+            &::before {
+                content: "\2661";
+                opacity: 0.6;
+            }
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            &:hover,
+            &:active,
+            &.active {
+                background: rgba(vars.$rose-deep, 0.4);
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+// Typography
+$body-font: "DM Sans", sans-serif;
+$heading-font: "Lovers Quarrel", cursive;
+$sub-heading-font: "Cormorant Garamond", serif;
+
+// Fluid type scale — (min, max) pairs for use with @include type-scale("step")
+// Scales linearly between 20rem (320px) and 75rem (1200px) viewport widths.
+$type-scale: (
+    // 11px → 12px
+    "xs": (0.6875rem, 0.75rem),
+    // 13px → 14px
+    "sm": (0.8125rem, 0.875rem),
+    // 15px → 16px
+    "base": (0.9375rem, 1rem),
+    // 18px → 22px for lead text, sub-labels
+    "lg": (1.125rem, 1.375rem),
+    // 24px → 32px for h3 / section headings
+    "xl": (1.5rem, 2rem),
+    // 36px → 56px for h2 / page headings
+    "2xl": (2.25rem, 3.5rem),
+    // 48px → 88px for display
+    "display": (3rem, 5.5rem)
+);

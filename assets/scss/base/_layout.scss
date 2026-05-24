@@ -1,0 +1,117 @@
+@use "../abstracts/variables" as vars;
+@use "../utilities/mixins" as mx;
+@use "sass:map";
+
+// -----------------------------------------------------------------------------
+// Skip link
+// -----------------------------------------------------------------------------
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: map.get(vars.$padding, "md");
+    background: vars.$rose;
+    color: vars.$warm-white;
+    padding: map.get(vars.$padding, "xs") map.get(vars.$padding, "md");
+    border-bottom: none;
+    z-index: 9999;
+
+    &:focus {
+        top: map.get(vars.$padding, "xs");
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Focus styles
+// -----------------------------------------------------------------------------
+:focus-visible {
+    outline: 2px solid vars.$rose;
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+// -----------------------------------------------------------------------------
+// Body
+// -----------------------------------------------------------------------------
+body {
+    background: vars.$cream;
+    background-image: url("../images/bg.png");
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 500;
+    color: vars.$ink;
+    font-size: 1rem;
+}
+
+// -----------------------------------------------------------------------------
+// Link styles
+// -----------------------------------------------------------------------------
+a {
+    color: vars.$rose;
+    text-decoration: none;
+    border-bottom: 1px solid vars.$rose-pale;
+
+    &:hover {
+        color: vars.$rose-mid;
+        border-bottom-color: vars.$rose-mid;
+        text-decoration: none;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Buttons
+// -----------------------------------------------------------------------------
+
+button {
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+// -----------------------------------------------------------------------------
+// Site wrapper
+// -----------------------------------------------------------------------------
+.site {
+    max-width: vars.$container-max-width;
+    margin-inline: auto;
+    padding-inline: map.get(vars.$padding, "lg");
+}
+
+// -----------------------------------------------------------------------------
+// Paragraphs
+// -----------------------------------------------------------------------------
+
+p {
+    margin-block: map.get(vars.$padding, "md");
+
+    &:last-child {
+        margin-block: map.get(vars.$padding, "md") 0;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Headings
+// -----------------------------------------------------------------------------
+%heading-base {
+    margin-block: 0 map.get(vars.$padding, "md");
+}
+
+h1:not(.hero h1) {
+    @extend %heading-base;
+    @include mx.type-scale("2xl");
+}
+
+h2 {
+    @extend %heading-base;
+    @include mx.type-scale("xl");
+}
+
+h3 {
+    @extend %heading-base;
+    @include mx.type-scale("lg");
+}
+
+.heading {
+    @extend %heading-base;
+    @include mx.type-scale("base");
+}

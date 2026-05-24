@@ -1,0 +1,10 @@
+@use "sass:map";
+@use "../abstracts/variables" as vars;
+
+@function breakpoint-value($name) {
+    @if map.has-key(vars.$breakpoints, $name) {
+        @return map.get(vars.$breakpoints, $name);
+    }
+
+    @error "Unknown breakpoint `#{$name}`. Available values are: #{map.keys(vars.$breakpoints)}.";
+}
