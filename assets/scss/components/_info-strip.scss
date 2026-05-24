@@ -13,10 +13,10 @@
 
     .info-cell {
         background: vars.$warm-white;
-        padding: map.get(vars.$padding, "md");
+        padding: map.get(vars.$padding, "xl") map.get(vars.$padding, "lg") map.get(vars.$padding, "md");
 
         @include mx.breakpoint("lg") {
-            padding: map.get(vars.$padding, "lg") map.get(vars.$padding, "xl");
+            padding: map.get(vars.$padding, "xl") map.get(vars.$padding, "xxl") map.get(vars.$padding, "lg");
         }
 
         &:first-child {
