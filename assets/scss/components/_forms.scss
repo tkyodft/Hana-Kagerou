@@ -1,0 +1,94 @@
+@use "../abstracts/variables" as vars;
+@use "../utilities/mixins" as mx;
+@use "sass:map";
+
+// -----------------------------------------------------------------------------
+// Form styling
+// -----------------------------------------------------------------------------
+
+.form-group {
+    margin-block-end: map.get(vars.$padding, "lg");
+
+    label {
+        display: block;
+        @include mx.type-scale("sm");
+        color: vars.$ink;
+        margin-block-end: map.get(vars.$padding, "xs");
+    }
+
+    input,
+    textarea,
+    select {
+        display: block;
+        width: 100%;
+        color: vars.$ink;
+        background: vars.$peach-pale;
+        border: 1px solid vars.$rose-pale;
+        appearance: none;
+        border-radius: map.get(vars.$padding, "xs");
+        padding: map.get(vars.$padding, "md") map.get(vars.$padding, "lg");
+
+        &::placeholder {
+            color: vars.$ink-mid;
+        }
+
+        &:hover {
+            border-color: vars.$rose-strong;
+        }
+
+        &:focus {
+            outline: none;
+            border-color: vars.$rose-mid;
+            box-shadow: 0 0 0 3px rgba(vars.$rose-strong, 0.2);
+        }
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 8rem;
+    }
+
+    select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238279b4' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right map.get(vars.$padding, "md") center;
+        padding-inline-end: map.get(vars.$padding, "xxl");
+        cursor: pointer;
+        color: vars.$ink;
+    }
+
+    .form-hint {
+        @include mx.type-scale("sm");
+        color: inherit;
+        margin-block-start: map.get(vars.$padding, "xs");
+    }
+}
+
+button:not(#back-to-top, .hamburger),
+.button {
+    @include mx.flex-layout(
+        $display: inline-flex,
+        $align: center,
+        $justify: center,
+        $gap: map.get(vars.$padding, "sm")
+    );
+    background-color: vars.$rose-pale;
+    color: vars.$ink;
+    border-bottom: 3px solid vars.$rose-mid;
+    border-radius: map.get(vars.$padding, "xs");
+    padding: map.get(vars.$padding, "sm") map.get(vars.$padding, "lg");
+    cursor: pointer;
+    transition:
+        background 0.15s,
+        border-color 0.15s;
+
+    &:hover {
+        background-color: vars.$rose-mid;
+        border-color: vars.$rose-strong;
+    }
+
+    &:active {
+        transform: translateY(2px);
+        border-bottom-width: 1px;
+    }
+}
