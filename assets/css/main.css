@@ -208,7 +208,6 @@ header.nav-wrapper {
 header.nav-wrapper .topnav {
   height: 4rem;
   background: hsl(26, 100%, 99%);
-  border-bottom: 1px solid transparent;
   display: flex;
   align-items: stretch;
   justify-content: space-between;
@@ -406,11 +405,11 @@ header.nav-wrapper .drawer a:hover, header.nav-wrapper .drawer a:active, header.
 }
 .info-strip .info-cell {
   background: hsl(26, 100%, 99%);
-  padding: 1rem;
+  padding: 2rem 1.5rem 1rem;
 }
 @media (min-width: 64rem) {
   .info-strip .info-cell {
-    padding: 1.5rem 2rem;
+    padding: 2rem 3rem 1.5rem;
   }
 }
 .info-strip .info-cell:first-child {
@@ -515,6 +514,87 @@ footer .credit-links li a:hover {
 #back-to-top.is-visible {
   display: block;
   pointer-events: auto;
+}
+
+.form-group {
+  margin-block-end: 1.5rem;
+}
+.form-group label {
+  display: block;
+  font-size: clamp(0.8125rem, 0.7897727273rem + 0.1136363636vw, 0.875rem);
+  color: hsl(17, 30%, 18%);
+  margin-block-end: 0.25rem;
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+  display: block;
+  width: 100%;
+  color: hsl(17, 30%, 18%);
+  background: hsl(27, 69%, 94%);
+  border: 1px solid hsl(354, 57%, 86%);
+  appearance: none;
+  border-radius: 0.25rem;
+  padding: 1rem 1.5rem;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder,
+.form-group select::placeholder {
+  color: hsl(14, 21%, 40%);
+}
+.form-group input:hover,
+.form-group textarea:hover,
+.form-group select:hover {
+  border-color: hsl(350, 42%, 43%);
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: hsl(354, 48%, 67%);
+  box-shadow: 0 0 0 3px rgba(155.703, 63.597, 78.948, 0.2);
+}
+.form-group textarea {
+  resize: vertical;
+  min-height: 8rem;
+}
+.form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238279b4' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-inline-end: 3rem;
+  cursor: pointer;
+  color: hsl(17, 30%, 18%);
+}
+.form-group .form-hint {
+  font-size: clamp(0.8125rem, 0.7897727273rem + 0.1136363636vw, 0.875rem);
+  color: inherit;
+  margin-block-start: 0.25rem;
+}
+
+button:not(#back-to-top, .hamburger),
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: hsl(354, 57%, 86%);
+  color: hsl(17, 30%, 18%);
+  border-bottom: 3px solid hsl(354, 48%, 67%);
+  border-radius: 0.25rem;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+button:not(#back-to-top, .hamburger):hover,
+.button:hover {
+  background-color: hsl(354, 48%, 67%);
+  border-color: hsl(350, 42%, 43%);
+}
+button:not(#back-to-top, .hamburger):active,
+.button:active {
+  transform: translateY(2px);
+  border-bottom-width: 1px;
 }
 
 .petal-divider {
