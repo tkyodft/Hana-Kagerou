@@ -15,7 +15,6 @@ header.nav-wrapper {
     .topnav {
         height: vars.$navbar-height;
         background: vars.$warm-white;
-        border-bottom: 1px solid transparent;
         @include mx.flex-layout($align: stretch, $justify: space-between);
         box-shadow: 0 0 30px 1px vars.$shadow;
 
