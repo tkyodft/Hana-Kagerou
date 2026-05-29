@@ -83,6 +83,27 @@
 }
 
 // Usage:
+// @include fluid-type(1rem, 2rem); // auto calc preferred size between 20rem and 75rem viewport
+// @include fluid-type(1rem, 2vw, 2rem); // manual preferred value
+// @include type-scale("xl"); // look up a named step from $type-scale
+@mixin fluid-type($min, $preferred, $max: null, $min-vw: 20rem, $max-vw: 75rem) {
+    @if $max == null {
+        $max: $preferred;
+        $preferred: null;
+    }
+
+    @if $preferred == null {
+        $range: $max - $min;
+        $slope: math.div($range, $max-vw - $min-vw) * 100;
+        $intercept: $min - $slope * math.div($min-vw, 100);
+
+        font-size: clamp($min, calc(#{$intercept} + #{$slope}vw), $max);
+    } @else {
+        font-size: clamp($min, $preferred, $max);
+    }
+}
+
+// Usage:
 // @include type-scale("base");  // body copy  → clamp(0.9375rem, ..., 1rem)
 // @include type-scale("2xl");   // page h1    → clamp(2.25rem, ..., 3.5rem)
 // @include type-scale("display"); // hero h1  → clamp(3rem, ..., 5.5rem)
