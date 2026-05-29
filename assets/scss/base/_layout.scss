@@ -74,7 +74,10 @@ button {
 .site {
     max-width: vars.$container-max-width;
     margin-inline: auto;
-    padding-inline: map.get(vars.$padding, "lg");
+
+    @include mx.breakpoint("lg") {
+        padding-inline: map.get(vars.$padding, "lg");
+    }
 }
 
 // -----------------------------------------------------------------------------
